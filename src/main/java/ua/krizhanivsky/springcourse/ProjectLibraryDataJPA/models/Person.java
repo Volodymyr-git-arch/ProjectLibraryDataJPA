@@ -33,6 +33,7 @@ public class Person {
         this.fullName = fullName;
         this.yearOfBirth = yearOfBirth;
     }
+
     public Person() {
 
     }

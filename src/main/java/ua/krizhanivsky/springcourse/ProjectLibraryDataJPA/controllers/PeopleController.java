@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.models.Person;
 import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.services.BooksService;
 import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.services.PeopleService;
+import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.util.PersonValidator;
 
 
 /**
@@ -18,18 +19,18 @@ import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.services.PeopleService
 @RequestMapping("/people")
 public class PeopleController {
 
- private final PeopleService peopleService;
- private final BooksService booksService;
+    private final PeopleService peopleService;
+    private final BooksService booksService;
 
-   // private final PersonValidator personValidator;
+    private final PersonValidator personValidator;
 
     @Autowired
     public PeopleController(PeopleService peopleService,
-                            BooksService booksService
-                           ) {
+                            BooksService booksService,
+                            PersonValidator personValidator) {
         this.peopleService = peopleService;
         this.booksService = booksService;
-        //this.personValidator = personValidator;
+        this.personValidator = personValidator;
     }
 
     @GetMapping()
@@ -53,7 +54,7 @@ public class PeopleController {
     @PostMapping()
     public String create(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult) {
-//        personValidator.validate(person,bindingResult);
+        personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
             return "people/new";
 
@@ -71,7 +72,7 @@ public class PeopleController {
     public String update(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult,
                          @PathVariable("id") int id) {
-//        personValidator.validate(person,bindingResult);
+        personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
             return "people/edit";
 

@@ -30,48 +30,47 @@ public class PeopleService {
 
     public Person findOne(int id) {
         Optional<Person> foundPerson = peopleRepository.findById(id);
-     
+
         return foundPerson.orElse(null);
     }
+
     @Transactional
-    public void save(Person person){
+    public void save(Person person) {
         peopleRepository.save(person);
     }
+
     @Transactional
-    public void update(int id,Person updatedPerson){
+    public void update(int id, Person updatedPerson) {
         updatedPerson.setId(id);
         peopleRepository.save(updatedPerson);
     }
+
     @Transactional
-    public void delete(int id){
+    public void delete(int id) {
         peopleRepository.deleteById(id);
     }
 
-@Transactional
-    public Optional<Person> getPersonByFullName(String name){
-        return  peopleRepository.findByFullName(name);
-        }
+    @Transactional
+    public Optional<Person> getPersonByFullName(String name) {
+        return peopleRepository.findByFullName(name);
+    }
 
     @Transactional
     public List<Book> getBooksByPersonId(int id) {
         Optional<Person> person = (peopleRepository.findById(id));
         if (person.isPresent()) {
             Hibernate.initialize(person.get().getBooks());
-            //Мы внизу итерируемся по книгам, роэтому они точно будут загружены, но на всякий случай
-            // не мешает всега вызвать  Hibernate.initialize
-            //на всякий случай если код в дальнейшем поменяется и итерация
-            // по книгам удалится
+
             person.get().getBooks().forEach(book -> {
                 long diffInMillies = Math.abs(book.getTakenAt().getTime() -
-                    new Date().getTime());
-            //864000000 милисекунд = 10 суток
-            if (diffInMillies > 1)
-                book.setExpired(true);//книга просрочена
-        });
+                        new Date().getTime());
+
+                if (diffInMillies > 864000000)
+                    book.setExpired(true);
+            });
             return person.get().getBooks();
-    }
-    else {
-        return Collections.emptyList();
+        } else {
+            return Collections.emptyList();
         }
     }
 }

@@ -2,17 +2,15 @@ package ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.dao;
 
 import org.springframework.stereotype.Component;
 
-/**
- * @author Neil Alishev
- */
+
+
 @Component
 public class PersonDAO {
-
-//    private final JdbcTemplate jdbcTemplate;
+//private final JdbcTemplate jdbcTemplate;
 //
 //    @Autowired
 //    public PersonDAO(JdbcTemplate jdbcTemplate) {
-//        this.jdbcTemplate = jdbcTemplate;
+//       this.jdbcTemplate = jdbcTemplate;
 //    }
 //
 //    public List<Person> index() {
@@ -34,7 +32,7 @@ public class PersonDAO {
 //                updatedPerson.getYearOfBirth(), id);
 //    }
 //
-//    public void delete(int id) {
+//   public void delete(int id) {
 //        jdbcTemplate.update("DELETE FROM Person WHERE id=?", id);
 //    }
 //    public Optional<Person> getPersonByName(String name){
@@ -46,3 +44,4 @@ public class PersonDAO {
 //                new BeanPropertyRowMapper<>(Book.class));
 //    }
 }
+

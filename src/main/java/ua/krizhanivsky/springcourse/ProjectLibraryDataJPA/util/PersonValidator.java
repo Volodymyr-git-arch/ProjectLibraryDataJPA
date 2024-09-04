@@ -11,8 +11,9 @@ import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.services.PeopleService
 @Component
 public class PersonValidator implements Validator {
 
-   private final PeopleService peopleService;
-     @Autowired
+    private final PeopleService peopleService;
+
+    @Autowired
     public PersonValidator(PeopleService peopleService) {
         this.peopleService = peopleService;
     }
@@ -26,7 +27,7 @@ public class PersonValidator implements Validator {
     public void validate(Object o, Errors errors) {
         Person person = (Person) o;
         if (peopleService.getPersonByFullName(person.getFullName()).isPresent())
-            errors.rejectValue("fullName", "","A person with this full name already exists");
+            errors.rejectValue("fullName", "", "A person with this full name already exists");
 
     }
 

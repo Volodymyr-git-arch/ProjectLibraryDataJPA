@@ -28,7 +28,7 @@ public class Book {
     @Column(name = "year")
     private int year;
     @ManyToOne
-    @JoinColumn(name = "person_id",referencedColumnName = "id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person owner;
     @Column(name = "taken_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -36,14 +36,14 @@ public class Book {
     @Transient
     private boolean expired;
 
-    public Book(  String title, String author, int year) {
+    public Book(String title, String author, int year) {
 
         this.title = title;
         this.author = author;
         this.year = year;
     }
 
-    public Book(){
+    public Book() {
 
     }
 
