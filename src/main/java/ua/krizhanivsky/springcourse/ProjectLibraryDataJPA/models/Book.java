@@ -17,14 +17,14 @@ public class Book {
     private int id;
 
     @NotEmpty(message = "Name should not be empty")
-    @Size(min = 2, max = 30, message = "Name should be between 2 and 30 characters")
+    @Size(min = 2, max = 100, message = "Name should be between 2 and 100 characters")
     @Column(name = "title")
     private String title;
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 100, message = "Name should be between 2 and 100 characters")
     @Column(name = "author")
     private String author;
-    @Min(value = 0, message = "Age should be greater than 0")
+    @Min(value = 1500, message = "Age should be greater than 1500")
     @Column(name = "year")
     private int year;
     @ManyToOne

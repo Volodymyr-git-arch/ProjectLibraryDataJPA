@@ -12,9 +12,7 @@ import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.services.PeopleService
 import ua.krizhanivsky.springcourse.ProjectLibraryDataJPA.util.PersonValidator;
 
 
-/**
- * @author Neil Alishev
- */
+
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
